@@ -1,27 +1,105 @@
-.navbar{
-  height: 50px;
+.navbar {
+  height: 60px;
   background-color: #003580;
   display: flex;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navContainer{
+.navContainer {
   width: 100%;
   max-width: 1024px;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 20px;
 }
 
-.logo{
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logoIcon {
+  font-size: 24px;
+  color: #febb02;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(45deg, #febb02, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.userInfo:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.userIcon {
+  font-size: 18px;
+  color: #febb02;
+}
+
+.username {
+  font-size: 16px;
   font-weight: 500;
+  color: white;
+  font-family: "Poppins", sans-serif;
 }
 
-.navButton{
-  margin-left: 20px;
+.navItems {
+  display: flex;
+  gap: 15px;
+}
+
+.navButton {
   border: none;
-  padding: 5px 10px;
+  padding: 8px 16px;
   cursor: pointer;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navButton:first-child {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.navButton:first-child:hover {
+  background-color: white;
   color: #003580;
+}
+
+.navButton:last-child {
+  background-color: #febb02;
+  color: #003580;
+  border: 1px solid #febb02;
+}
+
+.navButton:last-child:hover {
+  background-color: #fdc934;
+  border-color: #fdc934;
 }

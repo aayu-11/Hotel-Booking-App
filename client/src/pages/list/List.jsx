@@ -16,6 +16,8 @@ const List = () => {
   const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
+  const hotelsPerPage = 4;
 
   const { data, loading, error, refetch } = useFetch(
     `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
@@ -23,11 +25,22 @@ const List = () => {
 
   const handleClick = () => {
     refetch();
+    setCurrentPage(1); // Reset to first page when searching
   };
 
-  // console.log("data", data);
-  // console.log("min", min);
-  // console.log("max", max);
+  // Calculate pagination
+  const totalPages = data ? Math.ceil(data.length / hotelsPerPage) : 0;
+  const indexOfLastHotel = currentPage * hotelsPerPage;
+  const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
+  const currentHotels = data
+    ? data.slice(indexOfFirstHotel, indexOfLastHotel)
+    : [];
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top
+  };
+
   return (
     <div>
       <Navbar />
@@ -115,11 +128,51 @@ const List = () => {
           <div className="listResult">
             {loading ? (
               "Loading please wait..."
+            ) : error ? (
+              "Error loading hotels. Please try again."
             ) : (
               <>
-                {data.map((item) => (
+                {currentHotels.map((item) => (
                   <SearchItem item={item} key={item._id} />
                 ))}
+                {data && data.length > 0 && (
+                  <div className="pagination">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="paginationButton"
+                    >
+                      Previous
+                    </button>
+                    <div className="pageNumbers">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                        (number) => (
+                          <button
+                            key={number}
+                            onClick={() => handlePageChange(number)}
+                            className={`pageNumber ${
+                              currentPage === number ? "active" : ""
+                            }`}
+                          >
+                            {number}
+                          </button>
+                        )
+                      )}
+                    </div>
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="paginationButton"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+                {data && data.length === 0 && (
+                  <div className="noResults">
+                    No hotels found for your search criteria.
+                  </div>
+                )}
               </>
             )}
           </div>
