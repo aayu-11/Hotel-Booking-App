@@ -20,7 +20,9 @@ const List = () => {
   const hotelsPerPage = 4;
 
   const { data, loading, error, refetch } = useFetch(
-    `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
+    `/hotels?city=${destination.toLowerCase().trim()}&min=${min || 0}&max=${
+      max || 999
+    }`
   );
 
   const handleClick = () => {
@@ -54,6 +56,11 @@ const List = () => {
               <input
                 placeholder={destination}
                 onChange={(e) => setDestination(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleClick();
+                  }
+                }}
                 type="text"
               />
             </div>

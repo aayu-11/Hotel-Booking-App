@@ -49,11 +49,14 @@ const Header = ({ type }) => {
   const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
+    const normalizedDestination = destination.toLowerCase().trim();
     dispatch({
       type: "NEW_SEARCH",
-      payload: { destination, dates: dates, options },
+      payload: { destination: normalizedDestination, dates: dates, options },
     });
-    navigate("/hotels", { state: { destination, date: dates, options } });
+    navigate("/hotels", {
+      state: { destination: normalizedDestination, date: dates, options },
+    });
   };
 
   const handleClick = () => {
@@ -111,6 +114,11 @@ const Header = ({ type }) => {
                   placeholder="Where are you going?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleSearch();
+                    }
+                  }}
                 />
               </div>
               <div className="headerSearchItem">
