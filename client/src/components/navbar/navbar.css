@@ -80,6 +80,9 @@
   border-radius: 20px;
   font-weight: 500;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .navButton:first-child {
@@ -102,4 +105,25 @@
 .navButton:last-child:hover {
   background-color: #f57c00;
   border-color: #f57c00;
+}
+
+.logoutIcon {
+  font-size: 16px;
+  color: white;
+}
+
+.userInfo .navButton {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 12px;
+}
+
+.userInfo .navButton:hover {
+  background-color: white;
+  color: #e65100;
+}
+
+.userInfo .navButton:hover .logoutIcon {
+  color: #e65100;
 }

@@ -56,6 +56,10 @@ const Header = ({ type }) => {
     navigate("/hotels", { state: { destination, date: dates, options } });
   };
 
+  const handleClick = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="header">
       <div
@@ -94,7 +98,11 @@ const Header = ({ type }) => {
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free Lamabooking account
             </p>
-            {!user && <button className="headerBtn">Sign in / Register</button>}
+            {!user && (
+              <button className="headerBtn" onClick={handleClick}>
+                Sign in / Register
+              </button>
+            )}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />

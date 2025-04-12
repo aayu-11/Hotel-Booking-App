@@ -1,7 +1,7 @@
 import "./login.css";
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useDebounce } from "../../hooks/useDebounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -67,6 +67,9 @@ export default function Login() {
           >
             {loading ? "Logging in..." : "Login"}
           </button>
+          <div className="registerLink">
+            Don't have an account? <Link to="/register">Register here</Link>
+          </div>
         </div>
       </div>
     </div>

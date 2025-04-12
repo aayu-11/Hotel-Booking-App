@@ -1,7 +1,7 @@
 import "./register.css";
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useDebounce } from "../../hooks/useDebounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -77,6 +77,9 @@ export default function Register() {
           >
             {loading ? "Creating account..." : "Register"}
           </button>
+          <div className="loginLink">
+            Already have an account? <Link to="/login">Login here</Link>
+          </div>
         </div>
       </div>
     </div>
