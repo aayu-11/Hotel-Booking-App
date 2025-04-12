@@ -13,7 +13,7 @@
 
 .listSearch {
   flex: 1;
-  background-color: #febb02;
+  background-color: #ffb74d;
   padding: 10px;
   border-radius: 10px;
   position: sticky;
@@ -23,7 +23,7 @@
 
 .lsTitle {
   font-size: 20px;
-  color: #555;
+  color: #e65100;
   margin-bottom: 10px;
 }
 
@@ -36,13 +36,16 @@
 
 .lsItem > label {
   font-size: 12px;
+  color: #e65100;
 }
 
 .lsItem > input {
   height: 30px;
   border: none;
   padding: 5px;
+  border-radius: 3px;
 }
+
 .lsItem > span {
   height: 30px;
   padding: 5px;
@@ -50,6 +53,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .lsOptions {
@@ -60,22 +64,30 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  color: #555;
+  color: #e65100;
   font-size: 12px;
 }
 
 .lsOptionInput {
   width: 50px;
+  border: none;
+  border-radius: 3px;
 }
 
 .listSearch > button {
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #e65100;
   color: white;
   border: none;
   width: 100%;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+.listSearch > button:hover {
+  background-color: #f57c00;
 }
 
 .listResult {
@@ -101,8 +113,8 @@
 .pageNumber {
   padding: 8px 16px;
   background-color: #fff;
-  border: 1px solid #0071c2;
-  color: #0071c2;
+  border: 1px solid #e65100;
+  color: #e65100;
   cursor: pointer;
   border-radius: 4px;
   font-size: 14px;
@@ -111,8 +123,9 @@
 
 .paginationButton:hover:not(:disabled),
 .pageNumber:hover:not(.active) {
-  background-color: #0071c2;
+  background-color: #fb8c00;
   color: white;
+  border-color: #fb8c00;
 }
 
 .paginationButton:disabled {
@@ -123,9 +136,9 @@
 }
 
 .pageNumber.active {
-  background-color: #0071c2;
+  background-color: #e65100;
   color: white;
-  border-color: #0071c2;
+  border-color: #e65100;
 }
 
 .noResults {

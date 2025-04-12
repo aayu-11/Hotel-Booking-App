@@ -1,5 +1,5 @@
 .header {
-  background-color: #003580;
+  background-color: #e65100;
   color: white;
   display: flex;
   justify-content: center;
@@ -39,18 +39,23 @@
 }
 
 .headerBtn {
-  background-color: #0071c2;
+  background-color: #fb8c00;
   color: white;
   font-weight: 500;
   border: none;
   padding: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.headerBtn:hover {
+  background-color: #f57c00;
 }
 
 .headerSearch {
   height: 30px;
   background-color: white;
-  border: 3px solid #febb02;
+  border: 3px solid #ffb74d;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -63,7 +68,7 @@
 }
 
 .headerIcon {
-  color: lightgray;
+  color: #fb8c00;
 }
 
 .headerSearchItem {
@@ -78,7 +83,7 @@
 }
 
 .headerSearchText {
-  color: lightgray;
+  color: #757575;
   cursor: pointer;
 }
 
@@ -117,12 +122,20 @@
 .optionCounterButton {
   width: 30px;
   height: 30px;
-  border: 1px solid #0071c2;
-  color: #0071c2;
+  border: 1px solid #fb8c00;
+  color: #fb8c00;
   cursor: pointer;
   background-color: white;
+  transition: all 0.3s ease;
+}
+
+.optionCounterButton:hover:not(:disabled) {
+  background-color: #fb8c00;
+  color: white;
 }
 
 .optionCounterButton:disabled {
   cursor: not-allowed;
+  border-color: #ddd;
+  color: #ddd;
 }

@@ -1,9 +1,9 @@
 .navbar {
   height: 60px;
-  background-color: #003580;
+  background-color: #e65100;
   display: flex;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(230, 81, 0, 0.2);
 }
 
 .navContainer {
@@ -29,14 +29,14 @@
 
 .logoIcon {
   font-size: 24px;
-  color: #febb02;
+  color: #ffb74d;
 }
 
 .logoText {
   font-size: 24px;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(45deg, #febb02, #fff);
+  background: linear-gradient(45deg, #ffb74d, #fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -58,7 +58,7 @@
 
 .userIcon {
   font-size: 18px;
-  color: #febb02;
+  color: #ffb74d;
 }
 
 .username {
@@ -90,16 +90,16 @@
 
 .navButton:first-child:hover {
   background-color: white;
-  color: #003580;
+  color: #e65100;
 }
 
 .navButton:last-child {
-  background-color: #febb02;
-  color: #003580;
-  border: 1px solid #febb02;
+  background-color: #fb8c00;
+  color: white;
+  border: 1px solid #fb8c00;
 }
 
 .navButton:last-child:hover {
-  background-color: #fdc934;
-  border-color: #fdc934;
+  background-color: #f57c00;
+  border-color: #f57c00;
 }
