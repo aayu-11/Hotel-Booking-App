@@ -1,0 +1,247 @@
+.reservationsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.reservationsWrapper {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.reservationsTitle {
+  font-size: 24px;
+  color: #003580;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.reservationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reservationItem {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.reservationImage {
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.reservationImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reservationDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reservationDetails h2 {
+  font-size: 20px;
+  color: #003580;
+  margin: 0;
+}
+
+.roomType {
+  color: #666;
+  margin: 0;
+}
+
+.dateInfo {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.dateInfo p {
+  margin: 0;
+  color: #333;
+}
+
+.dateInfo span {
+  font-weight: 600;
+  color: #003580;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #003580;
+  margin: 10px 0;
+}
+
+.status {
+  margin: 10px 0;
+}
+
+.statusBadge {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.statusBadge.confirmed {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.statusBadge.pending {
+  background-color: #fef7e0;
+  color: #b06000;
+}
+
+.statusBadge.cancelled {
+  background-color: #fce8e6;
+  color: #c5221f;
+}
+
+.reservationActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cancelButton,
+.contactButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.cancelButton {
+  background-color: #f8f9fa;
+  color: #c5221f;
+  border: 1px solid #c5221f;
+}
+
+.cancelButton:hover {
+  background-color: #fce8e6;
+}
+
+.cancelButton:disabled {
+  background-color: #f8f9fa;
+  color: #999;
+  border-color: #999;
+  cursor: not-allowed;
+}
+
+.contactButton {
+  background-color: #003580;
+  color: white;
+}
+
+.contactButton:hover {
+  background-color: #002b5c;
+}
+
+.noReservations {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+.error {
+  color: #c5221f;
+}
+
+.cancelDialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialogContent {
+  background: white;
+  padding: 30px;
+  border-radius: 5px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.dialogContent h3 {
+  margin: 0 0 15px 0;
+  color: #003580;
+}
+
+.dialogContent p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dialogButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.dialogButton:not(.cancel) {
+  background-color: #f8f9fa;
+  color: #003580;
+}
+
+.dialogButton.cancel {
+  background-color: #c5221f;
+  color: white;
+}
+
+.dialogButton:not(.cancel):hover {
+  background-color: #e8f0fe;
+}
+
+.dialogButton.cancel:hover {
+  background-color: #a50e0b;
+}
+
+.dialogError {
+  color: #c5221f;
+  background-color: #fce8e6;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 14px;
+}

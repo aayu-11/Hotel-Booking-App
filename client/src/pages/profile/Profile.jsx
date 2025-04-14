@@ -3,6 +3,9 @@ import { AuthContext } from "../../context/AuthContext";
 import Navbar from "../../components/navbar/Navbar";
 import "./profile.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHotel } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -75,10 +78,10 @@ const Profile = () => {
           </div>
           <div className="profileSection">
             <h2 className="sectionTitle">My Reservations</h2>
-            <div className="reservationsPlaceholder">
-              <p>Your reservations will appear here</p>
-              <p className="comingSoon">Coming Soon!</p>
-            </div>
+            <Link to="/my-reservations" className="reservationsLink">
+              <FontAwesomeIcon icon={faHotel} className="reservationsIcon" />
+              <span>View My Reservations</span>
+            </Link>
           </div>
         </div>
       </div>
