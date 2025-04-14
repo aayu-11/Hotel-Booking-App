@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const HotelSchema = new mongoose.Schema(
+const RoomSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -19,10 +19,15 @@ const HotelSchema = new mongoose.Schema(
       required: true,
     },
     roomNumbers: [{ number: Number, unavailableDates: { type: [Date] } }],
+    hotel: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hotel",
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("Room", HotelSchema);
+export default mongoose.model("Room", RoomSchema);
