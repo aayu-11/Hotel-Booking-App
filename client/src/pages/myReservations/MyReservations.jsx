@@ -8,11 +8,17 @@ import { format } from "date-fns";
 const MyReservations = () => {
   const { user } = useContext(AuthContext);
   const [reservations, setReservations] = useState([]);
+  const [filteredReservations, setFilteredReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [cancelError, setCancelError] = useState(null);
+
+  // Filter states
+  const [dateFilter, setDateFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -23,6 +29,7 @@ const MyReservations = () => {
           },
         });
         setReservations(res.data);
+        setFilteredReservations(res.data);
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch reservations");
@@ -34,6 +41,42 @@ const MyReservations = () => {
       fetchReservations();
     }
   }, [user]);
+
+  useEffect(() => {
+    let filtered = [...reservations];
+
+    // Apply date filter
+    if (dateFilter !== "all") {
+      const today = new Date();
+      filtered = filtered.filter((reservation) => {
+        const checkInDate = new Date(reservation.checkInDate);
+        if (dateFilter === "upcoming") {
+          return checkInDate >= today;
+        } else {
+          return checkInDate < today;
+        }
+      });
+    }
+
+    // Apply status filter
+    if (statusFilter !== "all") {
+      filtered = filtered.filter(
+        (reservation) => reservation.status === statusFilter
+      );
+    }
+
+    // Apply search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (reservation) =>
+          reservation.hotel.name.toLowerCase().includes(query) ||
+          reservation.room.title.toLowerCase().includes(query)
+      );
+    }
+
+    setFilteredReservations(filtered);
+  }, [reservations, dateFilter, statusFilter, searchQuery]);
 
   const handleCancelReservation = async () => {
     try {
@@ -83,13 +126,50 @@ const MyReservations = () => {
         <div className="reservationsWrapper">
           <h1 className="reservationsTitle">My Reservations</h1>
 
-          {reservations.length === 0 ? (
+          {/* Filters and Search */}
+          <div className="filtersContainer">
+            <div className="searchBox">
+              <input
+                type="text"
+                placeholder="Search by hotel or room..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <div className="filterGroup">
+              <select
+                value={dateFilter}
+                onChange={(e) => setDateFilter(e.target.value)}
+              >
+                <option value="all">All Dates</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="past">Past</option>
+              </select>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+              >
+                <option value="all">All Statuses</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Results Count */}
+          <div className="resultsCount">
+            {filteredReservations.length} reservation
+            {filteredReservations.length !== 1 ? "s" : ""} found
+          </div>
+
+          {filteredReservations.length === 0 ? (
             <div className="noReservations">
-              <p>You don't have any reservations yet.</p>
+              <p>No reservations found matching your criteria.</p>
             </div>
           ) : (
             <div className="reservationsList">
-              {reservations.map((reservation) => (
+              {filteredReservations.map((reservation) => (
                 <div className="reservationItem" key={reservation._id}>
                   <div className="reservationImage">
                     <img
@@ -98,7 +178,12 @@ const MyReservations = () => {
                     />
                   </div>
                   <div className="reservationDetails">
-                    <h2>{reservation.hotel.name}</h2>
+                    <div className="reservationHeader">
+                      <h2>{reservation.hotel.name}</h2>
+                      <span className={`statusBadge ${reservation.status}`}>
+                        {reservation.status}
+                      </span>
+                    </div>
                     <p className="roomType">{reservation.room.title}</p>
                     <div className="dateInfo">
                       <p>
@@ -116,12 +201,7 @@ const MyReservations = () => {
                         )}
                       </p>
                     </div>
-                    <p className="price">Total: ${reservation.totalAmount}</p>
-                    <div className="status">
-                      <span className={`statusBadge ${reservation.status}`}>
-                        {reservation.status}
-                      </span>
-                    </div>
+                    <p className="price">Total: ${reservation.totalPrice}</p>
                     <div className="reservationActions">
                       <button
                         className="cancelButton"
@@ -130,7 +210,10 @@ const MyReservations = () => {
                           setShowCancelDialog(true);
                           setCancelError(null);
                         }}
-                        disabled={reservation.status === "cancelled"}
+                        disabled={
+                          reservation.status === "cancelled" ||
+                          reservation.status === "completed"
+                        }
                       >
                         Cancel Reservation
                       </button>
