@@ -31,12 +31,16 @@ export const verifyToken = (req, res, next) => {
 export const verifyUser = (req, res, next) => {
   verifyToken(req, res, (err) => {
     if (err) return next(err); // Pass any errors from verifyToken
-    if (req.user.id === req.params.id || req.user.isAdmin) {
+
+    // Get the user ID from either params.id or params.userId
+    const requestedUserId = req.params.id || req.params.userId;
+
+    if (req.user.id === requestedUserId || req.user.isAdmin) {
       next();
     } else {
       console.log("User not authorized:", {
-        userId: req.user.id,
-        requestedId: req.params.id,
+        authenticatedUserId: req.user.id,
+        requestedUserId: requestedUserId,
         isAdmin: req.user.isAdmin,
       });
       return next(createError(403, "You are not authorized!"));
