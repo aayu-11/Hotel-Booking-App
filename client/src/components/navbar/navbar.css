@@ -56,6 +56,18 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.profileLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profileLink:hover {
+  transform: scale(1.05);
+}
+
 .userIcon {
   font-size: 18px;
   color: #ffb74d;
@@ -99,24 +111,21 @@
 .navButton:last-child {
   background-color: #fb8c00;
   color: white;
-  border: 1px solid #fb8c00;
 }
 
 .navButton:last-child:hover {
-  background-color: #f57c00;
-  border-color: #f57c00;
+  background-color: #ff9800;
 }
 
 .logoutIcon {
   font-size: 16px;
-  color: white;
+  transition: transform 0.3s ease;
 }
 
 .userInfo .navButton {
   background-color: transparent;
   border: 1px solid white;
   color: white;
-  padding: 6px 12px;
 }
 
 .userInfo .navButton:hover {
@@ -125,5 +134,5 @@
 }
 
 .userInfo .navButton:hover .logoutIcon {
-  color: #e65100;
+  transform: rotate(180deg);
 }

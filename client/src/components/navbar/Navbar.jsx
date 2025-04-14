@@ -35,8 +35,15 @@ const Navbar = () => {
         </Link>
         {user ? (
           <div className="userInfo">
-            <FontAwesomeIcon icon={faUser} className="userIcon" />
-            <span className="username">{user.username}</span>
+            <Link
+              to="/profile"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              <div className="profileLink">
+                <FontAwesomeIcon icon={faUser} className="userIcon" />
+                <span className="username">{user.username}</span>
+              </div>
+            </Link>
             <button className="navButton" onClick={handleLogout}>
               <FontAwesomeIcon icon={faSignOutAlt} className="logoutIcon" />
               Logout

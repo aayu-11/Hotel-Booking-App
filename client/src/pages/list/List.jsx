@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
@@ -107,6 +107,7 @@ const List = () => {
                     type="number"
                     min={1}
                     className="lsOptionInput"
+                    onChange={(e) => setOptions({ ...options, adult: e.target.value })}
                     placeholder={options.adult}
                   />
                 </div>
@@ -116,6 +117,7 @@ const List = () => {
                     type="number"
                     min={0}
                     className="lsOptionInput"
+                    onChange={(e) => setOptions({ ...options, children: e.target.value })}
                     placeholder={options.children}
                   />
                 </div>
@@ -125,6 +127,7 @@ const List = () => {
                     type="number"
                     min={1}
                     className="lsOptionInput"
+                    onChange={(e) => setOptions({ ...options, room: e.target.value })}
                     placeholder={options.room}
                   />
                 </div>

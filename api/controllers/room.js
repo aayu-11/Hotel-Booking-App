@@ -1,4 +1,4 @@
-import Room from "../models/room.js";
+import Room from "../models/Room.js";
 import Hotel from "../models/hotel.js";
 import mongoose from "mongoose";
 

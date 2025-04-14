@@ -43,17 +43,19 @@ export const login = async (req, res, next) => {
         id: user._id,
         isAdmin: user.isAdmin,
       },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
     );
 
     res
       .cookie("access_token", token, {
         httpOnly: true,
         sameSite: "none",
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
       })
       .status(200)
-      .json(otherDetails);
+      .json({ ...otherDetails, accessToken: token });
   } catch (error) {
     next(error);
   }
@@ -65,6 +67,7 @@ export const logout = async (req, res, next) => {
       .clearCookie("access_token", {
         httpOnly: true,
         sameSite: "none",
+        secure: true,
       })
       .status(200)
       .json("User has been logged out.");

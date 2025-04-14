@@ -29,7 +29,11 @@ export default function Login() {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      const userWithToken = {
+        ...res.data,
+        accessToken: res.data.token || res.data.access_token,
+      };
+      dispatch({ type: "LOGIN_SUCCESS", payload: userWithToken });
       navigate("/");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
