@@ -17,7 +17,6 @@ A full-stack hotel booking application built with the MERN stack (MongoDB, Expre
 - 📅 Date range selection for booking
 - 💰 Price calculation based on selected dates
 - 🏷️ Room selection and booking
-- 📱 Responsive design for all devices
 
 ### Hotel Features
 
@@ -149,6 +148,37 @@ The application will be available at:
 - PUT `/api/users/:id` - Update user
 - DELETE `/api/users/:id` - Delete user
 
+### Reservations
+
+- **POST `/api/reservations`** - Create a new reservation
+  - **Required Fields**:
+    - `user`: User ID
+    - `hotel`: Hotel ID
+    - `room`: Room ID
+    - `checkInDate`: Check-in date
+    - `checkOutDate`: Check-out date
+    - `totalPrice`: Total price for the reservation
+    - `numberOfGuests`: Number of guests
+    - `status` (optional): Reservation status (default: `confirmed`)
+    - `specialRequests` (optional): Any special requests
+    - `paymentStatus` (optional): Payment status (default: `pending`)
+
+- **GET `/api/reservations/user/:id`** - Get all reservations for a specific user
+  - **Authorization**: Requires the user to be authenticated and authorized (either the user themselves or an admin).
+
+- **GET `/api/reservations/:id`** - Get a specific reservation by ID
+  - **Authorization**: Requires the user to be authenticated.
+
+- **PUT `/api/reservations/:id`** - Update reservation status
+  - **Required Fields**:
+    - `status`: New reservation status (e.g., `cancelled`, `completed`).
+  - **Authorization**: Requires the user to be authenticated.
+
+- **DELETE `/api/reservations/:id`** - Cancel a reservation
+  - **Authorization**: Requires the user to be authenticated.
+
+---
+
 ## Contributing 🤝
 
 1. Fork the repository
@@ -170,4 +200,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ by [Your Name]
+## Architecture Diagram 🖼️
+
+Below is a more scalable and polished architecture for this application:
+
+![Architecture Diagram](client/public/image.png)
+
+---
+
+Made with ❤️ by [Ayush Kumar]
